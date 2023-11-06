@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="stylesheet" href="/static/style.css" />
+        <title>Registrace</title>
+        
+    </head>
+<body>
+
+<h1>Registrace</h1>
+
+<form action="{{ url_for('get_form_data') }}" method="post">
+    <label for="nick">Přezdívka:</label><br>
+    <input type="text" id="nick" name="nick"><br>
+    <p>{{ name_miss_msg }}</p>
+    <label for="is_swimmer">Umíš plavat?:</label><br>
+    <input type="radio" name="is_swimmer" id="is_swimmer_y" value="yes">
+    <label for="is_swimmer_y">Ano</label> <br>
+    <input type="radio" name="is_swimmer" id="is_swimmer_n" value="no">
+    <label for="is_swimmer_n">Ne</label> <br>
+    <input type="hidden" id="is_swimmer_hidden" name="is_swimmer_hidden" value="">
+
+    <label for="canoe_friend">Tvůj kamarád:</label><br>
+    <input type="text" name="canoe_friend" id="canoe_friend"><br>
+    <input type="submit" value="Submit">
+</form>
+
+
+<script>
+    const isSwimmerYes = document.getElementById("is_swimmer_y");
+    const isSwimmerHidden = document.getElementById("is_swimmer_hidden");
+    
+    isSwimmerYes.addEventListener("change", function() {
+        isSwimmerHidden.value = this.checked ? "yes" : "";
+    });
+    </script>
+
+<p><a href="/">Jdi zpět</a>.</p>
+</body>
+</html>
