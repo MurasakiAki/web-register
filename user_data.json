@@ -1,0 +1,14 @@
+{
+    "Aa1": {
+        "id": "0d05619d-cd49-4f4b-b086-c6fdee409bfa",
+        "nick": "Aa1",
+        "is_swimmer": "yes",
+        "friend": "Bb1"
+    },
+    "Bb1": {
+        "id": "26614db4-fe97-4cf0-9e48-f6d152b2f1b8",
+        "nick": "Bb1",
+        "is_swimmer": "yes",
+        "friend": "Aa1"
+    }
+}
