@@ -1,9 +1,9 @@
 {
     "Aa1": {
-        "id": "0d05619d-cd49-4f4b-b086-c6fdee409bfa",
+        "id": "58a1edd4-de83-49ca-abfd-852dc7643e55",
         "nick": "Aa1",
         "is_swimmer": "yes",
-        "friend": "Bb1"
+        "friend": null
     },
     "Bb1": {
         "id": "26614db4-fe97-4cf0-9e48-f6d152b2f1b8",

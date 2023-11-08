@@ -37,6 +37,7 @@ def get_form_data():
     if is_swimmer != "yes":
         return render_template('register.html', name_miss_msg="Zadejte své jméno a označte, že umíte plavat."), 400
 
+
     # Load existing user data from the JSON file
     users_data = load_user_data()
 
