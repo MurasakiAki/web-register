@@ -5,7 +5,6 @@ import os
 
 app = Flask(__name__, static_url_path='/static', static_folder='static', template_folder='templates')
 
-# File to store user data
 user_data_file = 'user_data.json'
 
 def load_user_data():
@@ -31,44 +30,43 @@ def register_page():
 @app.route("/get_form_data", methods=['POST'])
 def get_form_data():
     nick = request.form['nick']
-    is_swimmer = request.form.get('is_swimmer_hidden')  # Use get method to handle missing key gracefully
+    is_swimmer = request.form.get('is_swimmer_hidden')
     friend_nick = request.form.get('canoe_friend', '').strip()
 
     if is_swimmer != "yes":
         return render_template('register.html', name_miss_msg="Zadejte své jméno a označte, že umíte plavat."), 400
 
-
-    # Load existing user data from the JSON file
     users_data = load_user_data()
 
-    # Generate a unique ID for the user
+    if nick in users_data:
+        return render_template('register.html', name_miss_msg="Zadané jméno už existuje."), 400
+
     user_id = str(uuid.uuid4())
 
-    # Create a dictionary with user data
     user_data = {
         "id": user_id,
         "nick": nick,
         "is_swimmer": is_swimmer,
-        "friend": None  # Initialize friend as None
+        "friend": None
     }
 
-    # If friend's nick is provided, check if it exists in users_data
     if friend_nick and friend_nick in users_data:
         existing_user = users_data[friend_nick]
         existing_user_id = existing_user["id"]
         existing_user['friend'] = nick
         user_data['friend'] = friend_nick
-        # Update users_data dictionary with existing user's updated data
         users_data[friend_nick] = existing_user
         users_data[nick] = user_data
     else:
-        # Update users_data dictionary with new user data
         users_data[nick] = user_data
 
-    # Save updated user data to the JSON file
     save_user_data(users_data)
 
     return "Registration successful!", 200
+
+@app.route("/get_participants", methods=['GET'])
+def get_participants():
+    return render_template('participants.html', participants=load_user_data()), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
