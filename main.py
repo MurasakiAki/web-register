@@ -62,7 +62,7 @@ def get_form_data():
 
     save_user_data(users_data)
 
-    return "Registration successful!", 200
+    return "Byli jste registrováni", 200
 
 @app.route("/get_participants", methods=['GET'])
 def get_participants():
