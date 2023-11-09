@@ -14,15 +14,13 @@ body {
   background-color: #3498db;
   border-radius: 8px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  width: 100%;
+    width: 100%;
   max-width: 250px; /* Smaller maximum width */
   text-align: center;
   box-sizing: border-box;
 }
 
 h1 {
-  margin-bottom: 15px;
   font-size: 18px;
 }
 
@@ -36,9 +34,7 @@ form {
 label,
 input[type="text"],
 input[type="radio"] {
-  margin-bottom: 10px;
   width: calc(100% - 20px);
-  padding: 8px;
   border: none;
   border-radius: 5px;
   background-color: #ecf0f1;
@@ -52,7 +48,6 @@ input[type="submit"] {
   color: #ecf0f1;
   border: none;
   border-radius: 5px;
-  padding: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
   box-sizing: border-box;
@@ -66,7 +61,6 @@ input[type="submit"]:hover {
 a {
   text-decoration: none;
   color: #ecf0f1;
-  margin-top: 10px;
   font-size: 14px;
 }
 
