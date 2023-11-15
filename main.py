@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import uuid
 import json
 import os
+import re
 
 app = Flask(__name__, static_url_path='/static', static_folder='static', template_folder='templates')
 
@@ -27,11 +28,23 @@ def index():
 def register_page():
     return render_template('register.html'), 200
 
+def is_valid_username(username):
+    # Check if the username is between 3 and 8 characters
+    if not (3 <= len(username) <= 8):
+        return False
+
+    # Check if the username contains only alphanumeric characters and underscores
+    return bool(re.match("^[a-zA-Z0-9_]+$", username))
+
 @app.route("/get_form_data", methods=['POST'])
 def get_form_data():
     nick = request.form['nick']
     is_swimmer = request.form.get('is_swimmer_hidden')
     friend_nick = request.form.get('canoe_friend', '').strip()
+
+    # Check if the username is valid
+    if not is_valid_username(nick):
+        return render_template('register.html', name_miss_msg="Jméno musí být dlouhé od 3 do 8 znaků a obsahovat pouze písmena, číslice a podtržítko."), 400
 
     if is_swimmer != "yes":
         return render_template('register.html', name_miss_msg="Zadejte své jméno a označte, že umíte plavat."), 400
