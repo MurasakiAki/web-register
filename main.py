@@ -63,7 +63,7 @@ def get_form_data():
         "friend": None
     }
 
-    if friend_nick and friend_nick in users_data:
+    if friend_nick and friend_nick in users_data and is_valid_username(friend_nick):
         existing_user = users_data[friend_nick]
         existing_user_id = existing_user["id"]
         existing_user['friend'] = nick
@@ -75,7 +75,7 @@ def get_form_data():
 
     save_user_data(users_data)
 
-    return "Byli jste registrováni", 200
+    return render_template('register.html', msg = "Byli jste registrováni"), 200
 
 @app.route("/get_participants", methods=['GET'])
 def get_participants():
